@@ -1,0 +1,44 @@
+/*.ng-untouched[required] {*/
+  /*border: 1px solid #a9a9a9; !* gray *!*/
+/*}*/
+/*.ng-touched[required] {*/
+  /*border: 1px solid #000fff; !* blue *!*/
+/*}*/
+/*.ng-valid[required], .ng-valid.required  {*/
+  /*border: 1px solid #42A948; !* green *!*/
+/*}*/
+/*.ng-invalid:not(form)  {*/
+  /*border: 1px solid #a94442; !* red *!*/
+/*}*/
+#search-container {
+  max-width: 1280px;
+  margin: 10px auto;
+  border-radius: 6px;
+  text-align: left;
+  padding: 15px;
+  background-color: #FFFFFF;
+}
+#autocomplete-container {
+  margin: 10px;
+}
+#label {
+  padding: 1px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+#input {
+  padding: 1px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+#button {
+  padding: 1px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.invalid  {
+  border: 1px solid red; /* red */
+}
+.valid  {
+  border: 1px solid blue; /* blue */
+}

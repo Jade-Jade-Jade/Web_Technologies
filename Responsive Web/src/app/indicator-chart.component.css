@@ -1,0 +1,11 @@
+#highchartContainer {
+  max-width: 100%;
+}
+.priceProgress {
+  margin-top: 16%;
+  margin-bottom: 16%;
+}
+.error-alert {
+  margin-top: 14%;
+  margin-bottom: 14%;
+}

@@ -1,0 +1,57 @@
+/* change all .btn to .btn-sm size on xs */
+#nav_stock-detail {
+  background-color: #EAEAEA;
+  display: flow-root;
+  text-align: center;
+}
+#content_stock-detail {
+  max-width: 100%;
+}
+#fb-logo {
+  width: 20px;
+  height: 20px;
+}
+.stockDetail_container {
+  padding: 2%;
+}
+#basicInfo_header {
+  margin-bottom: 2%;
+}
+#basicInfo_button{
+  margin-bottom: 2%;
+}
+#basicInfo_progress{
+  margin-top: 25%;
+  margin-bottom: 25%;
+}
+#basicInfo_error{
+  margin-top: 23%;
+  margin-bottom: 20%;
+}
+#newsInfo_progress {
+  margin: 10%;
+}
+#basicInfo_content {
+  margin-top: 11%;
+}
+.upTick {
+  max-height: 6%;
+  height: 18px;
+}
+.downTick {
+  max-height: 4%;
+  height: 18px;
+}
+.newsContent {
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+@media(max-width: 990px) {
+  .visable{
+    display:none;
+  }
+}
+.glyphicon-star {
+  color: #FED531;
+}
+

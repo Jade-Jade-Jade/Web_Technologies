@@ -1,0 +1,11 @@
+<div>
+<div [hidden]="historicalStatus != 0" class="progress" id="historical_progress">
+  <div class="progress-bar progress-bar-striped active" role="progressbar" style="width: 50%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+</div>
+<div [hidden]="historicalStatus != 1" id="historicalHighchart"></div>
+<div [hidden]="historicalStatus != 2" id="historical_error">
+  <div class="alert alert-danger" role="alert">
+    Error! Failed to get historical charts data
+  </div>
+</div>
+</div>

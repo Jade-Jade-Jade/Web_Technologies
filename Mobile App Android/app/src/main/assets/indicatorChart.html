@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+</head>
+
+<body>
+<div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+</body>
+
+<script>
+    let prameters = {
+    'SMA': {
+      'multiple': false,
+      'title': 'Simple Moving Average (SMA)',
+      'yInterval': 2.5
+    },
+    'EMA': {
+      'multiple': false,
+      'title': 'Exponential Moving Average (EMA)',
+      'yInterval': 2.5
+    },
+    'STOCH': {
+      'multiple': true,
+      'title': 'Stochastic Oscillator (STOCH)',
+      'yInterval': 10
+    },
+    'RSI': {
+      'multiple': false,
+      'title': 'Relative Strength Index (RSI)',
+      'yInterval': 10
+    },
+    'ADX': {
+      'multiple': false,
+      'title': 'Average Directional movement indeX (ADX)',
+      'yInterval': 5
+    },
+    'CCI': {
+      'multiple': false,
+      'title': 'Commodity Channel Index (CCI)',
+      'yInterval': 100
+    },
+    'BBANDS': {
+      'multiple': true,
+      'title': 'Bollinger Bands (BBANDS)',
+      'yInterval': 5
+    },
+    'MACD': {
+      'multiple': true,
+      'title': 'Moving Average Convergence/Divergence (MACD)',
+      'yInterval': 1
+    }
+    };
+
+    let indicatorData = JSON.parse(indicatorInfo.getResult());
+    let symbol = indicatorData.symbol;
+    let series_categories = indicatorData['series_categories'];
+    let series_arr = indicatorData['series_arr'];
+    let idx = indicatorInfo.getIdx();
+    let count = 0;
+    let series = [];
+    for (let key in series_arr) {
+        series[count++] = {
+        name: prameters[idx]['multiple']? symbol + " " + key : symbol,
+        data: series_arr[key]
+    }
+    }
+    let options = {
+        chart: {
+            zoomType: 'x',
+            borderColor: 'lightGray',
+            borderWidth: 1
+        },
+        title: {
+            text: prameters[idx]['title']
+        },
+        subtitle: {
+            useHTML: true,
+            text: "<a target='_blank' href='https://www.alphavantage.co/'>Source: Alpha Vantage</a>"
+        },
+        xAxis: {
+            type: 'datetime',
+            categories: series_categories,
+            tickInterval: 5,
+            reversed: true
+        },
+        yAxis: {
+            tickInterval: prameters[idx]['yInterval'],
+            title: {
+                  text: idx
+            }
+        },
+        series: series
+    };
+
+    var data = {
+        options: JSON.stringify(options),
+        type: 'image/png',
+        async: true
+    };
+    var exportUrl = 'http://export.highcharts.com/';
+    var url = "";
+    $.post(exportUrl, data, function(data) {
+        url = exportUrl + data;
+        indicatorInfo.setUrl(url);
+    });
+
+    Highcharts.chart('container', options);
+
+</script>
+</html>

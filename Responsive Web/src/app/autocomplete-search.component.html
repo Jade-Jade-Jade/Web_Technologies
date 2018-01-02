@@ -1,0 +1,37 @@
+<div id="search-container">
+  <div id="autocomplete-container">
+      <h4 align="center">Stock Market Search</h4>
+      <div class="row">
+        <div id="label" class="col-md-2 ">Enter Stock Ticker Symbol:<span class="text-danger">*</span></div>
+        <form id="input" #searchForm="ngForm" class="form-inline" class="col-md-6">
+              <input #symbolInput required
+                     [(ngModel)]="inputSymbol"
+                     (keyup)="checkSymbol(); updateFilteredOptions()"
+                     placeholder="e.g AAPL"
+                     aria-label="Option"
+                     [matAutocomplete]="auto"
+                     [formControl]="myControl"
+                     [ngClass]="{'form-control':true, 'invalid': myControl.touched || !isValid, 'valid': myControl.untouched || isValid}"
+              >
+              <div *ngIf="!isValid && (myControl.dirty || myControl.touched)">
+                  Please enter a stock ticker symbol.
+              </div>
+              <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let option of filteredOptions" [value]="option['Symbol']">
+                  {{ option['Symbol']}} - {{ option['Name'] }} ({{ option['Exchange'] }})
+                </mat-option>
+              </mat-autocomplete>
+        </form>
+
+        <div id="button" class="col-md-4">
+          <button type="button" class="btn btn-primary" (click)="getSymbolInfo()" [disabled]="!myControl.touched || !isValid">
+            <i class="fa fa-search" aria-hidden="true"></i> Get Quote
+          </button>
+          <button type="button" class="btn btn-default" (click)="clearInfo(); myControl.reset()">
+            <i class="fa fa-refresh" aria-hidden="true"></i> Clear
+          </button>
+        </div>
+
+      </div>
+  </div>
+</div>

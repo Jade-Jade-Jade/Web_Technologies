@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://code.highcharts.com/stock/highstock.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+</head>
+
+<body>
+<div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+</body>
+
+<script>
+Highcharts.stockChart('container',
+    {
+        title: {
+          text: historicalData.getSymbol() + ' Stock Value'
+        },
+        subtitle: {
+          useHTML: true,
+          text: '<a target="_blank" style="color: blue" href="https://www.alphavantage.co">Source: Alpha Vantage</a>'
+        },
+        rangeSelector: {
+          buttons: [{
+            type: 'month',
+            count: 1,
+            text: '1m'
+          }, {
+            type: 'month',
+            count: 3,
+            text: '3m'
+          }, {
+            type: 'month',
+            count: 6,
+            text: '6m'
+          }, {
+            type: 'year',
+            count: 1,
+            text: '1y'
+          }, {
+            type: 'all',
+            count: 1,
+            text: 'All'
+          }],
+          selected: 0
+        },
+        series: [{
+          name: historicalData.getSymbol(),
+          type: 'area',
+          data: JSON.parse(historicalData.getResult()),
+          color: '#97C2E8',
+          tooltip: [{
+            valueDecimals: 2,
+          }]
+        }],
+        tooltip:{
+          split:false
+        }
+    }
+);
+
+</script>
+</html>

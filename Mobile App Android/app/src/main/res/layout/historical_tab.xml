@@ -1,0 +1,41 @@
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tab2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <WebView
+            android:id="@+id/historicalWebView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+        </WebView>
+
+        <ProgressBar
+            android:id="@+id/historicalProgressBar"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_vertical"
+            android:indeterminateTint="@color/colorPrimary"
+            android:layout_margin="100sp" />
+
+        <TextView
+            android:id="@+id/historicalErrorText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/his_error_info"
+            android:textAlignment="center"
+            android:layout_marginTop="100sp"
+            android:textColor="@android:color/background_dark"
+            android:textSize="30sp" />
+
+    </RelativeLayout>
+
+
+</android.support.constraint.ConstraintLayout>

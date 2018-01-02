@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+</head>
+
+<body>
+<div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+</body>
+
+<script>
+
+    let priceData = JSON.parse(indicatorInfo.getResult());
+    let series_categories = priceData['series_categories'];
+    let price_series = priceData['price_series'];
+    let volume_series = priceData['volume_series'];
+
+    let options = {
+      chart: {
+        zoomType: 'x'
+      },
+      title: {
+        text: priceData.symbol + " Stock Price and Volume"
+      },
+      subtitle: {
+        useHTML: true,
+        text: "<a target='_blank' href='https://www.alphavantage.co/'>Source: Alpha Vantage</a>"
+      },
+      yAxis: [
+        {
+          title: {
+            text: "Stock Price",
+            labels: {
+              format: "{value:,.0f}"
+            },
+            max: priceData.maxPrice,
+            min: priceData.minPrice
+          }
+        },
+        {
+          title: {
+            text: "Volume"
+          },
+          opposite: true,
+          max: (priceData.maxVolume * 5)
+        }
+      ],
+      xAxis: {
+        type: "datetime",
+        categories: series_categories,
+        tickInterval: 5,
+        reversed: true
+      },
+      plotOptions: {
+        series: {
+          allowPointSelect: true
+        },
+        column: {
+          pointWidth: 2,
+        },
+        area: {
+          fillColor: "#E2E2FF"
+        }
+      },
+      series: [
+        {
+          type: "area",
+          marker: {
+            enabled: false
+          },
+          data: price_series,
+          threshold: null,
+          name: priceData['symbol'],
+          tooltip: {
+            valueDecimals: 2
+          },
+          color: "#0000FF"
+        },
+        {
+          type: "column",
+          data: volume_series,
+          name: priceData['symbol'] + " Volume",
+          yAxis: 1,
+          borderWidth: 0.2,
+          shadow: false,
+          color: "#FF0000"
+        }
+      ]
+    };
+    var data = {
+        options: JSON.stringify(options),
+        type: 'image/png',
+        async: true
+    };
+    var exportUrl = 'http://export.highcharts.com/';
+    var url = "";
+    $.post(exportUrl, data, function(data) {
+        url = exportUrl + data;
+        indicatorInfo.setUrl(url);
+    });
+
+    Highcharts.chart('container', options);
+
+</script>
+</html>

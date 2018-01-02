@@ -1,0 +1,112 @@
+<div id="highchartContainer">
+  <div [hidden]="currentIndicator != 'Price'">
+    <div [hidden]="oks['Price'] != 1" id="Price"></div>
+    <div [hidden]="oks['Price'] != 0" class="progress priceProgress">
+      <div class="progress-bar progress-bar-striped active"
+           role="progressbar"
+           style="width: 50%"
+           aria-valuenow="20"
+           aria-valuemin="0"
+           aria-valuemax="100"
+      >
+      </div>
+    </div>
+    <div [hidden]="oks['Price'] != 2" class="error-alert">
+      <div class="alert alert-danger" role="alert">
+        Error! Failed to get Price data
+      </div>
+    </div>
+  </div>
+
+  <div *ngFor="let indicator of indicators">
+    <div [hidden]="currentIndicator != indicator">
+      <div [hidden]="oks[indicator] != 1" id={{indicator}}></div>
+      <div [hidden]="oks[indicator] != 0" class="progress priceProgress">
+        <div class="progress-bar progress-bar-striped active"
+             role="progressbar"
+             style="width: 50%"
+             aria-valuenow="20"
+             aria-valuemin="0"
+             aria-valuemax="100"
+        >
+        </div>
+      </div>
+      <div [hidden]="oks[indicator] != 2" class="error-alert">
+        <div class="alert alert-danger" role="alert">
+          Error! Failed to get {{indicator}} data
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!--<div id="highchartContainer">-->
+  <!--<div [hidden]="currentIndicator != 'Price'" id="Price">-->
+    <!--<div class="progress priceProgress">-->
+      <!--<div class="progress-bar progress-bar-striped active"-->
+           <!--role="progressbar"-->
+           <!--style="width: 50%"-->
+           <!--aria-valuenow="20"-->
+           <!--aria-valuemin="0"-->
+           <!--aria-valuemax="100"-->
+      <!--&gt;-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+
+  <!--<div [hidden]="currentIndicator != 'SMA'" id="SMA">-->
+    <!--<div class="progress priceProgress">-->
+      <!--<div class="progress-bar progress-bar-striped active"-->
+           <!--role="progressbar"-->
+           <!--style="width: 50%"-->
+           <!--aria-valuenow="20"-->
+           <!--aria-valuemin="0"-->
+           <!--aria-valuemax="100"-->
+      <!--&gt;-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+  <!--<div [hidden]="currentIndicator != 'EMA'" id="EMA">-->
+    <!--<div class="progress priceProgress">-->
+      <!--<div class="progress-bar progress-bar-striped active"-->
+           <!--role="progressbar"-->
+           <!--style="width: 50%"-->
+           <!--aria-valuenow="20"-->
+           <!--aria-valuemin="0"-->
+           <!--aria-valuemax="100"-->
+      <!--&gt;-->
+      <!--</div>-->
+    <!--</div>-->
+
+  <!--</div>-->
+  <!--<div [hidden]="currentIndicator != 'STOCH'" id="STOCH">-->
+    <!--<div class="progress priceProgress">-->
+      <!--<div class="progress-bar progress-bar-striped active"-->
+           <!--role="progressbar"-->
+           <!--style="width: 50%"-->
+           <!--aria-valuenow="20"-->
+           <!--aria-valuemin="0"-->
+           <!--aria-valuemax="100"-->
+      <!--&gt;-->
+      <!--</div>-->
+    <!--</div>-->
+
+  <!--</div>-->
+  <!--<div [hidden]="currentIndicator != 'RSI'" id="RSI">-->
+
+  <!--</div>-->
+  <!--<div [hidden]="currentIndicator != 'ADX'" id="ADX">-->
+
+  <!--</div>-->
+  <!--<div [hidden]="currentIndicator != 'CCI'" id="CCI">-->
+
+  <!--</div>-->
+  <!--<div [hidden]="currentIndicator != 'BBANDS'" id="BBANDS">-->
+
+  <!--</div>-->
+  <!--<div [hidden]="currentIndicator != 'MACD'" id="MACD">-->
+
+  <!--</div>-->
+<!--</div>-->

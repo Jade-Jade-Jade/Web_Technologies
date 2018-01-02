@@ -1,0 +1,72 @@
+<!--<nav id="nav" class="navbar navbar-light">-->
+  <!--&lt;!&ndash; Navbar content &ndash;&gt;-->
+<!--</nav>-->
+<div class="list-group">
+  <div id="nav_fav-list" class="list-group-item">
+    <span id="title_fav-list">Favorite List</span>
+    <span class="pull-right">
+        <span class="hidden-xs hidden-sm">Automatic Refresh</span>
+        <label (click)="autoRefresh()"><input type="checkbox" data-toggle="toggle" id="my-toggle"></label>
+        <button type="button" class="btn btn-default" aria-label="Left Align" (click)="updateAll()">
+          <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+        </button>
+        <button [disabled]="isStart" type="button" class="btn btn-default" (click)="switchToStock()">
+          <span class="glyphicon glyphicon-menu-right"></span>
+        </button>
+    </span>
+  </div>
+  <div id="sort_fav-list" class="list-group-item container">
+    <div class="row">
+      <div class="col-md-1 col-xs-12 pull-left">
+        <span>Sort by</span>
+      </div>
+      <div class="form-group col-md-3 col-xs-12 pull-left">
+        <select class="form-control" (change)="setSortKey($event.target.value)">
+          <option value="default">Default</option>
+          <option value="symbol">Symbol</option>
+          <option value="close">Price</option>
+          <option value="changeValue">Change</option>
+          <option value="changePercent">Change Percent</option>
+          <option value="volume">Volume</option>
+        </select>
+      </div>
+      <div class="col-md-1 col-xs-12 pull-left">
+        <span>Order</span>
+      </div>
+      <div class="form-group col-md-3 col-xs-12 pull-left">
+        <select [disabled]="sortKey == 'default'" class="form-control" (change)="setSortMethod($event.target.value)">
+          <option value="Ascending">Ascending</option>
+          <option value="Descending">Descending</option>
+        </select>
+      </div>
+    </div>
+    <div id="table_fav-list" class="table-responsive">
+      <table class="table table-striped">
+        <tbody>
+          <tr>
+            <th>Symbol</th>
+            <th>Stock Price</th>
+            <th>Change(Change Percent)</th>
+            <th>Volume</th>
+            <th></th>
+          </tr>
+          <ng-container *ngFor="let fav of favData">
+            <tr>
+              <th id="fav_symbol" class="clickable-symbol" scope="row" (click)="getStockInfo(fav['symbol'])" >{{fav['symbol']}}</th>
+              <td>{{fav['close']}}</td>
+              <td>
+                <span [ngClass]="{'text-warning':fav['isIncrease'] == false, 'text-success':fav['isIncrease'] == true}">{{fav['changeString']}}</span>
+                <img [hidden]="fav['isIncrease'] == false" src="http://cs-server.usc.edu:45678/hw/hw8/images/Up.png" class="upTick">
+                <img [hidden]="fav['isIncrease'] == true" src="http://cs-server.usc.edu:45678/hw/hw8/images/Down.png" class="downTick">
+              </td>
+              <td>{{fav['volume_rep']}}</td>
+              <td>
+                <button type="button" class="btn btn-default" (click)="deleteStock(fav['symbol'])"><span class="glyphicon glyphicon-trash"></span></button>
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

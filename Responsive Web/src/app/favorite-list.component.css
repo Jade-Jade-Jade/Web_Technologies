@@ -1,0 +1,30 @@
+#nav_fav-list {
+  background-color: #EAEAEA;
+  display: flow-root;
+}
+#title_fav-list {
+
+}
+#sort_fav-list {
+  max-width: 100%;
+}
+#fav_symbol {
+  color: blue;
+}
+#table_fav-list {
+  width: 100%;
+}
+.upTick {
+  max-height: 6%;
+  height: 18px;
+}
+.downTick {
+  max-height: 4%;
+  height: 16px;
+}
+.red {
+  color: red;
+}
+.green {
+  color: green;
+}
